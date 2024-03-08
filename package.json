@@ -1,0 +1,10 @@
+{
+  "name": "profile",
+  "version": "0.0.1",
+  "author": "CF Matthee <cfmatthee@gmail.com>",
+  "description": "Experiments with GitHub profiles",
+  "license": "Private",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
