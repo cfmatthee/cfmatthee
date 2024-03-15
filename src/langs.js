@@ -108,7 +108,7 @@ const renderLanguages = (languages) => {
 // ===============================================================================================
 // main script starts here
 
-const excluded = ['obsidian-setting']
+const excluded = ['dotfiles', 'obsidian-setting']
 
 console.log("top-langs")
 const data = await fetchTopLangs().then(res => res.data)
