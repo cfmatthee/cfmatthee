@@ -6,22 +6,22 @@
 <g transform="translate(15,25)"><text x="0" y="0" class="header">Most Used Languages</text></g>
 <g transform="translate(15,45)">
 <mask id="items-mask"><rect x="0" y="0" width="270" height="8" rx="5" fill="#fff" /></mask>
-<rect mask="url(#items-mask)" x="0" y="0" width="105.86615023176074" height="8" fill="#3D6117" />
-<g transform="translate(15,25)"><circle cx="5" cy="5" r="5" fill="#3D6117" /><text x="15" y="10" class="lang-name">TeX (39.2%)</text></g>
-<rect mask="url(#items-mask)" x="105.86615023176074" y="0" width="54.95263191313734" height="8" fill="#dea584" />
-<g transform="translate(150,25)"><circle cx="5" cy="5" r="5" fill="#dea584" /><text x="15" y="10" class="lang-name">Rust (20.4%)</text></g>
-<rect mask="url(#items-mask)" x="160.81878214489808" y="0" width="54.36688043685314" height="8" fill="#3572A5" />
-<g transform="translate(15,45)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (20.1%)</text></g>
-<rect mask="url(#items-mask)" x="215.18566258175122" y="0" width="18.725760365737507" height="8" fill="#f1e05a" />
-<g transform="translate(150,45)"><circle cx="5" cy="5" r="5" fill="#f1e05a" /><text x="15" y="10" class="lang-name">JavaScript (6.9%)</text></g>
-<rect mask="url(#items-mask)" x="233.91142294748872" y="0" width="10.16121658518001" height="8" fill="#3178c6" />
-<g transform="translate(15,65)"><circle cx="5" cy="5" r="5" fill="#3178c6" /><text x="15" y="10" class="lang-name">TypeScript (3.8%)</text></g>
-<rect mask="url(#items-mask)" x="244.07263953266872" y="0" width="7.181027366816941" height="8" fill="#ff5a03" />
-<g transform="translate(150,65)"><circle cx="5" cy="5" r="5" fill="#ff5a03" /><text x="15" y="10" class="lang-name">Astro (2.7%)</text></g>
-<rect mask="url(#items-mask)" x="251.25366689948567" y="0" width="5.551781065464473" height="8" fill="#fcb32c" />
-<g transform="translate(15,85)"><circle cx="5" cy="5" r="5" fill="#fcb32c" /><text x="15" y="10" class="lang-name">MDX (2.1%)</text></g>
-<rect mask="url(#items-mask)" x="256.80544796495013" y="0" width="4.464283446568036" height="8" fill="#ff3e00" />
-<g transform="translate(150,85)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (1.7%)</text></g>
-<rect mask="url(#items-mask)" x="261.2697314115182" y="0" width="8.730268588481806" height="8" fill="#888" />
+<rect mask="url(#items-mask)" x="0" y="0" width="104.8583366002042" height="8" fill="#3D6117" />
+<g transform="translate(15,25)"><circle cx="5" cy="5" r="5" fill="#3D6117" /><text x="15" y="10" class="lang-name">TeX (38.8%)</text></g>
+<rect mask="url(#items-mask)" x="104.8583366002042" y="0" width="54.42949952936095" height="8" fill="#dea584" />
+<g transform="translate(150,25)"><circle cx="5" cy="5" r="5" fill="#dea584" /><text x="15" y="10" class="lang-name">Rust (20.2%)</text></g>
+<rect mask="url(#items-mask)" x="159.28783612956516" y="0" width="53.84932422942028" height="8" fill="#3572A5" />
+<g transform="translate(15,45)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (19.9%)</text></g>
+<rect mask="url(#items-mask)" x="213.13716035898545" y="0" width="21.1178148931576" height="8" fill="#f1e05a" />
+<g transform="translate(150,45)"><circle cx="5" cy="5" r="5" fill="#f1e05a" /><text x="15" y="10" class="lang-name">JavaScript (7.8%)</text></g>
+<rect mask="url(#items-mask)" x="234.25497525214305" y="0" width="10.064484886092774" height="8" fill="#3178c6" />
+<g transform="translate(15,65)"><circle cx="5" cy="5" r="5" fill="#3178c6" /><text x="15" y="10" class="lang-name">TypeScript (3.7%)</text></g>
+<rect mask="url(#items-mask)" x="244.31946013823583" y="0" width="7.112666164931207" height="8" fill="#ff5a03" />
+<g transform="translate(150,65)"><circle cx="5" cy="5" r="5" fill="#ff5a03" /><text x="15" y="10" class="lang-name">Astro (2.6%)</text></g>
+<rect mask="url(#items-mask)" x="251.43212630316702" y="0" width="5.4989297940718345" height="8" fill="#fcb32c" />
+<g transform="translate(15,85)"><circle cx="5" cy="5" r="5" fill="#fcb32c" /><text x="15" y="10" class="lang-name">MDX (2.0%)</text></g>
+<rect mask="url(#items-mask)" x="256.93105609723887" y="0" width="4.421784822572225" height="8" fill="#ff3e00" />
+<g transform="translate(150,85)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (1.6%)</text></g>
+<rect mask="url(#items-mask)" x="261.3528409198111" y="0" width="8.647159080188885" height="8" fill="#888" />
 </g>
 </svg>
