@@ -1,13 +1,20 @@
 {
   "name": "profile",
   "version": "0.0.1",
-  "author": "CF Matthee <cfmatthee@gmail.com>",
-  "description": "Experiments with GitHub profiles",
-  "license": "Private",
+  "description": "A dynamic README for GitHub's profile page",
+  "author": "CF Matthee",
+  "license": "ISC",
+  "repository": {
+    "type": "GitHub",
+    "url": "git+https://github.com/cfmatthee/cfmatthee.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cfmatthee/cfmatthee/issues"
+  },
+  "homepage": "https://github.com/cfmatthee/cfmatthee#readme",
   "type": "module",
+  "main": "index.js",
   "scripts": {
-    "langs": "node src/langs",
-    "langs:watch": "node --watch src/langs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

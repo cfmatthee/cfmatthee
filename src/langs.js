@@ -51,7 +51,6 @@ const extractLanguages = (repos) => {
 
 const analyseLanguages = (languages) => {
   const total = Object.keys(languages)
-    .filter(key => !excluded.includes(key))
     .map((key) => ({...languages[key], name: key}))
     .reduce((accum, cur) => accum + cur.size, 0)
 
@@ -108,14 +107,17 @@ const renderLanguages = (languages) => {
 // ===============================================================================================
 // main script starts here
 
-const excluded = ['dotfiles', 'obsidian-setting']
+const generateLanguagesChart = async () => {
+  const excluded = ['dotfiles', 'obsidian-setting']
 
-console.log("top-langs")
-const data = await fetchTopLangs().then(res => res.data)
-if (data.errors) {
-  console.error(data.errors)
-} else {
-  const repos = data.data.viewer.repositories.nodes.filter(node => !excluded.includes(node.name))
-  const languages = analyseLanguages(extractLanguages(repos))
-  renderLanguages(languages)
+  const data = await fetchTopLangs().then(res => res.data)
+  if (data.errors) {
+    console.error(data.errors)
+  } else {
+    const repos = data.data.viewer.repositories.nodes.filter(node => !excluded.includes(node.name))
+    const languages = analyseLanguages(extractLanguages(repos))
+    renderLanguages(languages)
+  }
 }
+
+export {generateLanguagesChart}
