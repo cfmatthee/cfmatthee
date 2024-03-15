@@ -116,6 +116,7 @@ const generateLanguagesChart = async () => {
   } else {
     const repos = data.data.viewer.repositories.nodes.filter(node => !excluded.includes(node.name))
     const languages = analyseLanguages(extractLanguages(repos))
+    console.log(`Found ${languages.length} languages in ${repos.length} repos`)
     renderLanguages(languages)
   }
 }

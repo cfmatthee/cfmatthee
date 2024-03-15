@@ -7,7 +7,7 @@ import axios from "axios";
  * @returns (Promise<any>)
  */
 const request = (data) => {
-  const token = process.env.GITHUB_TOKEN
+  const token = process.env.PROFILE_TOKEN
   return axios({
     url: 'https://api.github.com/graphql',
     method: 'post',
