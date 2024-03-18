@@ -2,7 +2,7 @@
 
 I'm an Electronic Engineer who mostly write Python programs to monitor and control instrumentation. Data downloaded from such instruments is then analysed, resulting in various data products, which is then used in the control algorithm for the instruments. Unfortunately, all such repos will be private.
 
-I do present some course and use LaTeX to use the same code formatted as either learner notes or presentation slides.
+I do present courses and use LaTeX code to generate both the learner notes and presentation slides from the same source files. This also makes it easy to change the template.
 
 I am currently learning Rust on the side. I also dabble around with full stack frameworks for web sites that displays information or allows for home automation.
 
