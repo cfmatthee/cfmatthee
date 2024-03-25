@@ -79,7 +79,7 @@ const renderLanguages = (languages) => {
   let x = 0
   for (const [index, item] of languages.slice(0, 8).entries()) {
     const width = INNER_WIDTH * item.frac / 100
-    content += `<rect mask="url(#items-mask)" x="${x}" y="0" width="${width}" height="8" fill="${item.color}" />\n`
+    content += `<rect mask="url(#items-mask)" x="${x.toFixed(0)}" y="0" width="${(width+1).toFixed(0)}" height="8" fill="${item.color}" />\n`
     x += width
 
     const y = Math.floor(index / 2) * 20 + 25
@@ -91,7 +91,7 @@ const renderLanguages = (languages) => {
   }
   if (x < INNER_WIDTH) {
     const width = INNER_WIDTH - x
-    content += `<rect mask="url(#items-mask)" x="${x}" y="0" width="${width}" height="8" fill="#888" />\n`
+    content += `<rect mask="url(#items-mask)" x="${x.toFixed(0)}" y="0" width="${(width+1).toFixed(0)}" height="8" fill="#888" />\n`
   }
 
   content += `</g>\n`
