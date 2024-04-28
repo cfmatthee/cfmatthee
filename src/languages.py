@@ -81,6 +81,7 @@ def render_most_used(languages):
     contents += "  </g>\n"
     contents += "</svg>\n"
 
+    os.makedirs("images", exist_ok=True)
     with open("images/lang.svg", "w") as f:
         f.write(contents)
 
