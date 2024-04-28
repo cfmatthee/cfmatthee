@@ -44,7 +44,33 @@ def post(query: str):
 
 
 def main():
+    excluded = [
+        "dotfiles",
+    ]
+
     response = post(query)
+    if "errors" in response:
+        print(response.errors)
+
+    repositories = filter(
+        lambda repo: repo["name"] not in excluded,
+        response["data"]["viewer"]["repositories"]["nodes"],
+    )
+    languages = {}
+    total = 0
+    for repo in repositories:
+        for item in repo["languages"]["edges"]:
+            lang = item["node"]["name"]
+            size = item["size"]
+            entry = languages.get(
+                lang, {"size": 0, "colour": item["node"]["color"], "language": lang}
+            )
+            entry["size"] += size
+            total += size
+            languages[lang] = entry
+    for lang in languages.values():
+        lang["frac"] = (lang["size"] * 100) / total
+    languages = sorted(languages.values(), key=lambda l: l["frac"], reverse=True)
 
 
 if __name__ == "__main__":
