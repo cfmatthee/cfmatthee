@@ -43,6 +43,48 @@ def post(query: str):
     return response.json()
 
 
+def render_most_used(languages):
+    WIDTH = 300
+    HEIGHT = 160
+    INNER_WIDTH = WIDTH - 30
+
+    style = (
+        "    .header {font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }\n"
+        "    .lang-name {font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #888; }\n"
+    )
+
+    contents = (
+        f'<svg width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" fill="none" role="img" xmlns="http://www.w3.org/2000/svg">\n'
+        f"  <style>\n{style}  </style>\n"
+        f'  <rect x="0.5" y="0.5" rx="4.5" width="{WIDTH-1}" height="{HEIGHT-1}" stroke="#888" stroke-opacity="1" fill="none" />\n'
+        f'  <g transform="translate(15,25)"><text x="0" y="0" class="header">Most Used Languages</text></g>\n'
+        f'  <g transform="translate(15,45)">\n'
+        f'    <mask id="items-mask"><rect x="0" y="0" width="{INNER_WIDTH}" height="8" rx="5" fill="#fff" /></mask>\n'
+    )
+
+    x = 0
+    for idx, item in enumerate(languages[:8]):
+        width = INNER_WIDTH * item["frac"] / 100
+        contents += f'    <rect mask="url(#items-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="{item["color"]}" />\n'
+        x += width
+
+        y = (idx // 2) * 20 + 25
+        p = (idx % 2) * INNER_WIDTH / 2 + 15
+        contents += f'    <g transform="translate({p},{y})">'
+        contents += f'<circle cx="5" cy="5" r="5" fill="{item["color"]}" />'
+        contents += f'<text x="15" y="10" class="lang-name">{item["language"]} ({item["frac"]:.1f}%)</text>'
+        contents += f"</g>\n"
+    if x < INNER_WIDTH:
+        width = INNER_WIDTH - x
+        contents += f'    <rect mask="url(#items-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="#888" />\n'
+
+    contents += "  </g>\n"
+    contents += "</svg>\n"
+
+    with open("images/lang.svg", "w") as f:
+        f.write(contents)
+
+
 def main():
     excluded = [
         "dotfiles",
@@ -63,7 +105,7 @@ def main():
             lang = item["node"]["name"]
             size = item["size"]
             entry = languages.get(
-                lang, {"size": 0, "colour": item["node"]["color"], "language": lang}
+                lang, {"size": 0, "color": item["node"]["color"], "language": lang}
             )
             entry["size"] += size
             total += size
@@ -71,6 +113,8 @@ def main():
     for lang in languages.values():
         lang["frac"] = (lang["size"] * 100) / total
     languages = sorted(languages.values(), key=lambda l: l["frac"], reverse=True)
+
+    render_most_used(languages)
 
 
 if __name__ == "__main__":
