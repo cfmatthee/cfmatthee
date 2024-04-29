@@ -1,3 +1,5 @@
+import datetime as dt
+import pandas as pd
 import requests
 import requests.auth
 import os
@@ -43,6 +45,25 @@ def post(query: str):
     return response.json()
 
 
+def extract_languages(repositories):
+    languages = {}
+    total = 0
+    for repo in repositories:
+        for item in repo["languages"]["edges"]:
+            lang = item["node"]["name"]
+            size = item["size"]
+            entry = languages.get(
+                lang, {"size": 0, "color": item["node"]["color"], "language": lang}
+            )
+            entry["size"] += size
+            total += size
+            languages[lang] = entry
+    for lang in languages.values():
+        lang["frac"] = (lang["size"] * 100) / total
+    languages = sorted(languages.values(), key=lambda l: l["frac"], reverse=True)
+    return languages
+
+
 def render_most_used(languages):
     WIDTH = 300
     HEIGHT = 160
@@ -86,6 +107,34 @@ def render_most_used(languages):
         f.write(contents)
 
 
+def add_to_history(languages):
+    line = {l["language"]: round(l["frac"], 1) for l in languages}
+    date = dt.date.today().strftime("%d/%m/%Y")
+    line = pd.DataFrame(
+        line,
+        index=[
+            date,
+        ],
+    )
+
+    try:
+        history = pd.read_csv("src/lang_history.csv", index_col="Date")
+        history = pd.concat([history, line], axis=0, ignore_index=False)
+        history.fillna(0, inplace=True)
+    except FileNotFoundError:
+        history = line
+    history.sort_values(by=date, axis=1, inplace=True, ascending=False)
+
+    if len(history.index) > 1:
+        values1 = history.iloc[-2:-1, 0:8].reset_index(drop=True)
+        values2 = history.iloc[-1:, 0:8].reset_index(drop=True)
+        if values1.equals(values2):
+            return None
+
+    history.to_csv("src/lang_history.csv", index_label="Date")
+    return history
+
+
 def main():
     excluded = [
         "dotfiles",
@@ -94,28 +143,16 @@ def main():
     response = post(query)
     if "errors" in response:
         print(response.errors)
-
     repositories = filter(
         lambda repo: repo["name"] not in excluded,
         response["data"]["viewer"]["repositories"]["nodes"],
     )
-    languages = {}
-    total = 0
-    for repo in repositories:
-        for item in repo["languages"]["edges"]:
-            lang = item["node"]["name"]
-            size = item["size"]
-            entry = languages.get(
-                lang, {"size": 0, "color": item["node"]["color"], "language": lang}
-            )
-            entry["size"] += size
-            total += size
-            languages[lang] = entry
-    for lang in languages.values():
-        lang["frac"] = (lang["size"] * 100) / total
-    languages = sorted(languages.values(), key=lambda l: l["frac"], reverse=True)
 
+    languages = extract_languages(repositories)
     render_most_used(languages)
+
+    history = add_to_history(languages)
+    print(history)
 
 
 if __name__ == "__main__":
