@@ -108,6 +108,9 @@ def render_most_used(languages):
 
 
 def add_to_history(languages):
+    FILENAME = "src/lang_history.csv"
+    INDEX_COL_NAME = "Date"
+
     line = {l["language"]: round(l["frac"], 1) for l in languages}
     date = dt.date.today().strftime("%d/%m/%Y")
     line = pd.DataFrame(
@@ -118,7 +121,7 @@ def add_to_history(languages):
     )
 
     try:
-        history = pd.read_csv("src/lang_history.csv", index_col="Date")
+        history = pd.read_csv(FILENAME, index_col=INDEX_COL_NAME)
         history = pd.concat([history, line], axis=0, ignore_index=False)
         history.fillna(0, inplace=True)
     except FileNotFoundError:
@@ -131,8 +134,27 @@ def add_to_history(languages):
         if values1.equals(values2):
             return None
 
-    history.to_csv("src/lang_history.csv", index_label="Date")
+    history.to_csv(FILENAME, index_label=INDEX_COL_NAME)
     return history
+
+
+def get_colours(languages):
+    FILENAME = "src/colours.csv"
+    INDEX_COL_NAME = "Language"
+
+    colours = {l["language"]: l["color"] for l in languages}
+
+    try:
+        old_colours = pd.read_csv(FILENAME, index_col=INDEX_COL_NAME)
+        for index, row in old_colours.iterrows():
+            colours[index] = row["Color"]
+    except FileNotFoundError:
+        pass
+
+    pd.DataFrame.from_dict(colours, orient="index", columns=["Color"]).to_csv(
+        FILENAME, index_label=INDEX_COL_NAME
+    )
+    return colours
 
 
 def main():
@@ -149,10 +171,11 @@ def main():
     )
 
     languages = extract_languages(repositories)
-    render_most_used(languages)
-
     history = add_to_history(languages)
-    print(history)
+    colours = get_colours(languages)
+
+    render_most_used(languages)
+    print(colours)
 
 
 if __name__ == "__main__":
