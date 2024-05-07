@@ -15,7 +15,7 @@ I am currently learning Rust on the side. I also dabble around with full stack f
 
 ---
 
-Dynamic content in this profile is inspired by [github-readme-stats](https://github.com/anuraghazra/github-readme-stats). The graph is automatically generated weekly using GitHub Actions using data retrieved using GitHub's GraphQL endpoint.
+The graphs are automatically generated weekly using GitHub Actions using data retrieved using GitHub's GraphQL endpoint. ([More info](src))
 
 <p align="center">
     <img src="https://github.com/cfmatthee/cfmatthee/actions/workflows/update.yml/badge.svg">
