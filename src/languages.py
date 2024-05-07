@@ -5,7 +5,7 @@ import requests.auth
 import os
 
 
-query = """
+QUERY = """
 query {
     viewer {
         repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
@@ -25,6 +25,15 @@ query {
     }
 }
 """
+
+WIDTH = 300
+INNER_WIDTH = WIDTH - 30
+HEIGHT = 160
+
+STYLE = (
+    "    .header {font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }\n"
+    "    .lang-name {font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #888; }\n"
+)
 
 
 class BearerAuth(requests.auth.AuthBase):
@@ -65,28 +74,19 @@ def extract_languages(repositories):
 
 
 def render_most_used(languages):
-    WIDTH = 300
-    HEIGHT = 160
-    INNER_WIDTH = WIDTH - 30
-
-    style = (
-        "    .header {font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }\n"
-        "    .lang-name {font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #888; }\n"
-    )
-
     contents = (
         f'<svg width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" fill="none" role="img" xmlns="http://www.w3.org/2000/svg">\n'
-        f"  <style>\n{style}  </style>\n"
+        f"  <style>\n{STYLE}  </style>\n"
         f'  <rect x="0.5" y="0.5" rx="4.5" width="{WIDTH-1}" height="{HEIGHT-1}" stroke="#888" stroke-opacity="1" fill="none" />\n'
         f'  <g transform="translate(15,25)"><text x="0" y="0" class="header">Most Used Languages</text></g>\n'
         f'  <g transform="translate(15,45)">\n'
-        f'    <mask id="items-mask"><rect x="0" y="0" width="{INNER_WIDTH}" height="8" rx="5" fill="#fff" /></mask>\n'
+        f'    <mask id="lang-mask"><rect x="0" y="0" width="{INNER_WIDTH}" height="8" rx="5" fill="#fff" /></mask>\n'
     )
 
     x = 0
     for idx, item in enumerate(languages[:8]):
         width = INNER_WIDTH * item["frac"] / 100
-        contents += f'    <rect mask="url(#items-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="{item["color"]}" />\n'
+        contents += f'    <rect mask="url(#lang-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="{item["color"]}" />\n'
         x += width
 
         y = (idx // 2) * 20 + 25
@@ -97,7 +97,7 @@ def render_most_used(languages):
         contents += f"</g>\n"
     if x < INNER_WIDTH:
         width = INNER_WIDTH - x
-        contents += f'    <rect mask="url(#items-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="#888" />\n'
+        contents += f'    <rect mask="url(#lang-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="#888" />\n'
 
     contents += "  </g>\n"
     contents += "</svg>\n"
@@ -132,7 +132,7 @@ def add_to_history(languages):
         values1 = history.iloc[-2:-1, 0:8].reset_index(drop=True)
         values2 = history.iloc[-1:, 0:8].reset_index(drop=True)
         if values1.equals(values2):
-            return None
+            history.drop(history.tail(1).index, inplace=True)
 
     history.to_csv(FILENAME, index_label=INDEX_COL_NAME)
     return history
@@ -157,12 +157,51 @@ def get_colours(languages):
     return colours
 
 
+def render_history(history, colours):
+    INNER_HEIGHT = HEIGHT - 60
+    contents = (
+        f'<svg width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" fill="none" role="img" xmlns="http://www.w3.org/2000/svg">\n'
+        f"  <style>\n{STYLE}  </style>\n"
+        f'  <rect x="0.5" y="0.5" rx="4.5" width="{WIDTH-1}" height="{HEIGHT-1}" stroke="#888" stroke-opacity="1" fill="none" />\n'
+        f'  <g transform="translate(15,25)"><text x="0" y="0" class="header">Language History</text></g>\n'
+        f'  <g transform="translate(15,45)">\n'
+        f'    <rect x="0" y="0" width="{INNER_WIDTH}" height="{INNER_HEIGHT}" fill="#888" />\n'
+    )
+
+    start_date = dt.datetime.strptime(history.index[0], "%d/%m/%Y").date()
+    end_date = dt.datetime.strptime(history.index[-1], "%d/%m/%Y").date()
+    duration = (end_date - start_date).days
+    x_scale = float(INNER_WIDTH) / float(duration)
+    y_scale = float(INNER_HEIGHT) / 100.0
+
+    history = history.iloc[:, 0:8]
+    sum = history.sum(axis=1)
+    for col in reversed(history.columns):
+        color = colours[col]
+        list = ""
+        for index, value in zip(sum.index, sum.values):
+            i = dt.datetime.strptime(index, "%d/%m/%Y").date()
+            x = int(float((i - start_date).days) * x_scale)
+            y = int(INNER_HEIGHT - float(value) * y_scale)
+            list += f"{x},{y} "
+        list += f"{INNER_WIDTH},{INNER_HEIGHT} 0,{INNER_HEIGHT}"
+        contents += f'    <polygon points="{list}" fill="{color}" />\n'
+        sum -= history[col]
+
+    contents += "  </g>\n"
+    contents += "</svg>\n"
+
+    os.makedirs("images", exist_ok=True)
+    with open("images/history.svg", "w") as f:
+        f.write(contents)
+
+
 def main():
     excluded = [
         "dotfiles",
     ]
 
-    response = post(query)
+    response = post(QUERY)
     if "errors" in response:
         print(response.errors)
     repositories = filter(
@@ -174,8 +213,8 @@ def main():
     history = add_to_history(languages)
     colours = get_colours(languages)
 
-    render_most_used(languages)
-    print(colours)
+    # render_most_used(languages)
+    render_history(history, colours)
 
 
 if __name__ == "__main__":
