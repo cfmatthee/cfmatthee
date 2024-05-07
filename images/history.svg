@@ -1,0 +1,19 @@
+<svg width="300" height="160" viewBox="0 0 300 160" fill="none" role="img" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .header {font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+    .lang-name {font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #888; }
+  </style>
+  <rect x="0.5" y="0.5" rx="4.5" width="299" height="159" stroke="#888" stroke-opacity="1" fill="none" />
+  <g transform="translate(15,25)"><text x="0" y="0" class="header">Language History</text></g>
+  <g transform="translate(15,45)">
+    <rect x="0" y="0" width="270" height="100" fill="#888" />
+    <polygon points="0,3 47,3 52,3 121,3 158,3 195,2 232,2 270,2 270,100 0,100" fill="#ff3e00" />
+    <polygon points="0,5 47,4 52,4 121,4 158,4 195,4 232,3 270,4 270,100 0,100" fill="#fcb32c" />
+    <polygon points="0,7 47,6 52,6 121,6 158,6 195,6 232,5 270,5 270,100 0,100" fill="#ff5a03" />
+    <polygon points="0,9 47,9 52,9 121,9 158,9 195,8 232,7 270,7 270,100 0,100" fill="#3178c6" />
+    <polygon points="0,13 47,13 52,13 121,13 158,12 195,11 232,10 270,11 270,100 0,100" fill="#f1e05a" />
+    <polygon points="0,21 47,21 52,21 121,20 158,19 195,18 232,16 270,16 270,100 0,100" fill="#dea584" />
+    <polygon points="0,41 47,41 52,41 121,40 158,38 195,35 232,32 270,32 270,100 0,100" fill="#3572A5" />
+    <polygon points="0,61 47,61 52,60 121,60 158,57 195,53 232,49 270,49 270,100 0,100" fill="#3D6117" />
+  </g>
+</svg>

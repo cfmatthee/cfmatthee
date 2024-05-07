@@ -10,6 +10,7 @@ I am currently learning Rust on the side. I also dabble around with full stack f
 
 <p align="center">
     <img src="images/lang.svg" alt="Most used languages">
+    <img src="images/history.svg" alt="Language history">
 </p>
 
 ---
