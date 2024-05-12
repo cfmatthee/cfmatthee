@@ -213,7 +213,7 @@ def main():
     history = add_to_history(languages)
     colours = get_colours(languages)
 
-    # render_most_used(languages)
+    render_most_used(languages)
     render_history(history, colours)
 
 
