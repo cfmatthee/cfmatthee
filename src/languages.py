@@ -29,6 +29,7 @@ query {
 WIDTH = 300
 INNER_WIDTH = WIDTH - 30
 HEIGHT = 160
+NUM_LANGUAGES = 6
 
 STYLE = (
     "    .header {font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }\n"
@@ -84,12 +85,12 @@ def render_most_used(languages):
     )
 
     x = 0
-    for idx, item in enumerate(languages[:8]):
+    for idx, item in enumerate(languages[:NUM_LANGUAGES]):
         width = INNER_WIDTH * item["frac"] / 100
         contents += f'    <rect mask="url(#lang-mask)" x="{x:.0f}" y="0" width="{(width+1):.0f}" height="8" fill="{item["color"]}" />\n'
         x += width
 
-        y = (idx // 2) * 20 + 25
+        y = (idx // 2) * 20 + 40
         p = (idx % 2) * INNER_WIDTH / 2 + 15
         contents += f'    <g transform="translate({p},{y})">'
         contents += f'<circle cx="5" cy="5" r="5" fill="{item["color"]}" />'
@@ -129,8 +130,8 @@ def add_to_history(languages):
     history.sort_values(by=date, axis=1, inplace=True, ascending=False)
 
     if len(history.index) > 1:
-        values1 = history.iloc[-2:-1, 0:8].reset_index(drop=True)
-        values2 = history.iloc[-1:, 0:8].reset_index(drop=True)
+        values1 = history.iloc[-2:-1, 0:NUM_LANGUAGES].reset_index(drop=True)
+        values2 = history.iloc[-1:, 0:NUM_LANGUAGES].reset_index(drop=True)
         if values1.equals(values2):
             history.drop(history.tail(1).index, inplace=True)
 
@@ -174,7 +175,7 @@ def render_history(history, colours):
     x_scale = float(INNER_WIDTH) / float(duration)
     y_scale = float(INNER_HEIGHT) / 100.0
 
-    history = history.iloc[:, 0:8]
+    history = history.iloc[:, 0:NUM_LANGUAGES]
     sum = history.sum(axis=1)
     for col in reversed(history.columns):
         color = colours[col]
