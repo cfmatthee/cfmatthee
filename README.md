@@ -10,12 +10,11 @@ I am currently learning Rust on the side. I also dabble around with full stack f
 
 <p align="center">
     <img src="images/lang.svg" alt="Most used languages">
-    <img src="images/history.svg" alt="Language history">
 </p>
 
 ---
 
-The graphs are automatically generated weekly using GitHub Actions using data retrieved using GitHub's GraphQL endpoint. ([More info](src))
+The graph is automatically generated weekly using GitHub Actions using data retrieved using GitHub's GraphQL endpoint. ([More info](src))
 
 <p align="center">
     <img src="https://github.com/cfmatthee/cfmatthee/actions/workflows/update.yml/badge.svg">
