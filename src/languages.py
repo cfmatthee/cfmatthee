@@ -200,6 +200,7 @@ def render_history(history, colours):
 def main():
     excluded = [
         "dotfiles",
+        "tftools",
     ]
 
     response = post(QUERY)
