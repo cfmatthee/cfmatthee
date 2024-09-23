@@ -5,7 +5,6 @@ Python,#3572A5
 TypeScript,#3178c6
 Astro,#ff5a03
 MDX,#fcb32c
-Kotlin,#A97BFF
 JavaScript,#f1e05a
 Dockerfile,#384d54
 HTML,#e34c26
@@ -14,4 +13,5 @@ Makefile,#427819
 Just,#384d54
 CSS,#563d7c
 Shell,#89e051
+Kotlin,#A97BFF
 Svelte,#ff3e00
