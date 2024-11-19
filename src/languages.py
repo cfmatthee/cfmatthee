@@ -55,13 +55,21 @@ def post(query: str):
     return response.json()
 
 
-def extract_languages(repositories):
+def extract_languages(repositories, excluded):
     languages = {}
     total = 0
     for repo in repositories:
         for item in repo["languages"]["edges"]:
+            name = repo["name"]
             lang = item["node"]["name"]
             size = item["size"]
+            if (
+                f"{name}:*" in excluded
+                or f"*:{lang}" in excluded
+                or f"{name}:{lang}" in excluded
+            ):
+                continue
+            # print(f"found {name}:{lang}")
             entry = languages.get(
                 lang, {"size": 0, "color": item["node"]["color"], "language": lang}
             )
@@ -199,19 +207,20 @@ def render_history(history, colours):
 
 def main():
     excluded = [
-        "dotfiles",
-        "tftools",
+        "*:CMake",
+        "*:Kotlin",
+        "dotfiles:*",
+        "tftools:*",
+        "sportratings:C++",
+        "sportratings:C",
     ]
 
     response = post(QUERY)
     if "errors" in response:
         print(response.errors)
-    repositories = filter(
-        lambda repo: repo["name"] not in excluded,
-        response["data"]["viewer"]["repositories"]["nodes"],
-    )
+    repositories = response["data"]["viewer"]["repositories"]["nodes"]
 
-    languages = extract_languages(repositories)
+    languages = extract_languages(repositories, excluded)
     history = add_to_history(languages)
     colours = get_colours(languages)
 
