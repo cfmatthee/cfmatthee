@@ -2,9 +2,9 @@ Language,Color
 TeX,#3D6117
 Python,#3572A5
 Rust,#dea584
+Dart,#00B4AB
 TypeScript,#3178c6
 Astro,#ff5a03
-Dart,#00B4AB
 MDX,#fcb32c
 JavaScript,#f1e05a
 Dockerfile,#384d54
