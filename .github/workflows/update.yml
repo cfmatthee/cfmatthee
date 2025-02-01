@@ -1,0 +1,38 @@
+name: Update
+
+on:
+  schedule:
+    - cron: "17 23 * * 6"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: run update
+        run: python src/languages.py
+        env:
+          PROFILE_TOKEN: ${{ secrets.PROFILE_TOKEN }}
+
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: automated build and commit
