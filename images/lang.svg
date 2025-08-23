@@ -7,18 +7,18 @@
   <g transform="translate(15,25)"><text x="0" y="0" class="header">Most Used Languages</text></g>
   <g transform="translate(15,45)">
     <mask id="lang-mask"><rect x="0" y="0" width="270" height="8" rx="5" fill="#fff" /></mask>
-    <rect mask="url(#lang-mask)" x="0" y="0" width="105" height="8" fill="#3D6117" />
-    <g transform="translate(15.0,40)"><circle cx="5" cy="5" r="5" fill="#3D6117" /><text x="15" y="10" class="lang-name">TeX (38.5%)</text></g>
-    <rect mask="url(#lang-mask)" x="104" y="0" width="80" height="8" fill="#dea584" />
-    <g transform="translate(150.0,40)"><circle cx="5" cy="5" r="5" fill="#dea584" /><text x="15" y="10" class="lang-name">Rust (29.2%)</text></g>
-    <rect mask="url(#lang-mask)" x="183" y="0" width="50" height="8" fill="#3572A5" />
-    <g transform="translate(15.0,60)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (18.2%)</text></g>
-    <rect mask="url(#lang-mask)" x="232" y="0" width="13" height="8" fill="#3178c6" />
-    <g transform="translate(150.0,60)"><circle cx="5" cy="5" r="5" fill="#3178c6" /><text x="15" y="10" class="lang-name">TypeScript (4.4%)</text></g>
-    <rect mask="url(#lang-mask)" x="244" y="0" width="11" height="8" fill="#ff3e00" />
-    <g transform="translate(15.0,80)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (3.6%)</text></g>
+    <rect mask="url(#lang-mask)" x="0" y="0" width="102" height="8" fill="#3D6117" />
+    <g transform="translate(15.0,40)"><circle cx="5" cy="5" r="5" fill="#3D6117" /><text x="15" y="10" class="lang-name">TeX (37.5%)</text></g>
+    <rect mask="url(#lang-mask)" x="101" y="0" width="85" height="8" fill="#dea584" />
+    <g transform="translate(150.0,40)"><circle cx="5" cy="5" r="5" fill="#dea584" /><text x="15" y="10" class="lang-name">Rust (31.0%)</text></g>
+    <rect mask="url(#lang-mask)" x="185" y="0" width="49" height="8" fill="#3572A5" />
+    <g transform="translate(15.0,60)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (17.8%)</text></g>
+    <rect mask="url(#lang-mask)" x="233" y="0" width="13" height="8" fill="#3178c6" />
+    <g transform="translate(150.0,60)"><circle cx="5" cy="5" r="5" fill="#3178c6" /><text x="15" y="10" class="lang-name">TypeScript (4.3%)</text></g>
+    <rect mask="url(#lang-mask)" x="245" y="0" width="11" height="8" fill="#ff3e00" />
+    <g transform="translate(15.0,80)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (3.5%)</text></g>
     <rect mask="url(#lang-mask)" x="254" y="0" width="7" height="8" fill="#ff5a03" />
-    <g transform="translate(150.0,80)"><circle cx="5" cy="5" r="5" fill="#ff5a03" /><text x="15" y="10" class="lang-name">Astro (2.3%)</text></g>
+    <g transform="translate(150.0,80)"><circle cx="5" cy="5" r="5" fill="#ff5a03" /><text x="15" y="10" class="lang-name">Astro (2.2%)</text></g>
     <rect mask="url(#lang-mask)" x="260" y="0" width="11" height="8" fill="#888" />
   </g>
 </svg>
