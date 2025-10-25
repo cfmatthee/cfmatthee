@@ -1,7 +1,8 @@
 Language,Color
-TeX,#3D6117
 Rust,#dea584
+TeX,#3D6117
 Python,#3572A5
+Typst,#239dad
 TypeScript,#3178c6
 Svelte,#ff3e00
 Astro,#ff5a03
