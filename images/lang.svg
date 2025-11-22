@@ -11,13 +11,13 @@
     <g transform="translate(15.0,40)"><circle cx="5" cy="5" r="5" fill="#dea584" /><text x="15" y="10" class="lang-name">Rust (28.2%)</text></g>
     <rect mask="url(#lang-mask)" x="76" y="0" width="69" height="8" fill="#3D6117" />
     <g transform="translate(150.0,40)"><circle cx="5" cy="5" r="5" fill="#3D6117" /><text x="15" y="10" class="lang-name">TeX (25.2%)</text></g>
-    <rect mask="url(#lang-mask)" x="144" y="0" width="48" height="8" fill="#3572A5" />
-    <g transform="translate(15.0,60)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (17.5%)</text></g>
-    <rect mask="url(#lang-mask)" x="191" y="0" width="36" height="8" fill="#239dad" />
+    <rect mask="url(#lang-mask)" x="144" y="0" width="49" height="8" fill="#3572A5" />
+    <g transform="translate(15.0,60)"><circle cx="5" cy="5" r="5" fill="#3572A5" /><text x="15" y="10" class="lang-name">Python (17.7%)</text></g>
+    <rect mask="url(#lang-mask)" x="192" y="0" width="36" height="8" fill="#239dad" />
     <g transform="translate(150.0,60)"><circle cx="5" cy="5" r="5" fill="#239dad" /><text x="15" y="10" class="lang-name">Typst (13.1%)</text></g>
     <rect mask="url(#lang-mask)" x="227" y="0" width="15" height="8" fill="#ff3e00" />
-    <g transform="translate(15.0,80)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (5.1%)</text></g>
-    <rect mask="url(#lang-mask)" x="240" y="0" width="14" height="8" fill="#3178c6" />
+    <g transform="translate(15.0,80)"><circle cx="5" cy="5" r="5" fill="#ff3e00" /><text x="15" y="10" class="lang-name">Svelte (5.0%)</text></g>
+    <rect mask="url(#lang-mask)" x="241" y="0" width="14" height="8" fill="#3178c6" />
     <g transform="translate(150.0,80)"><circle cx="5" cy="5" r="5" fill="#3178c6" /><text x="15" y="10" class="lang-name">TypeScript (4.9%)</text></g>
     <rect mask="url(#lang-mask)" x="254" y="0" width="17" height="8" fill="#888" />
   </g>
