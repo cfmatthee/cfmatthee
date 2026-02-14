@@ -6,14 +6,14 @@ Typst,#239dad
 TypeScript,#3178c6
 Svelte,#ff3e00
 Astro,#ff5a03
-Dockerfile,#384d54
 CSS,#563d7c
+Shell,#89e051
 HTML,#e34c26
 JavaScript,#f1e05a
 Just,#384d54
 SCSS,#c6538c
 Makefile,#427819
-Shell,#89e051
+Dockerfile,#384d54
 MDX,#fcb32c
 Dart,#00B4AB
 Kotlin,#A97BFF
